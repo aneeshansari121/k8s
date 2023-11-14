@@ -1,0 +1,23 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: pod
+  name: pref-pod
+spec:
+  containers:
+  - image: nginx:latest
+    name: con1
+    ports:
+    - containerPort: 80
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 100
+          preference:
+            matchExpressions:
+            - key: cpu
+              operator: NotIn # for affinity / anti-affinity user Operator In / NotIn
+              values:
+              - ryzen

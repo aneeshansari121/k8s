@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: pod
+  name: tol-master
+spec:
+  containers:
+  - image: nginx:latest
+    name: con1
+    ports:
+    - containerPort: 80
+  tolerations:
+  - key: node-role.kubernetes.io/control-plane
+#    operator: "Equal"
+    effect: NoSchedule

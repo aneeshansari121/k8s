@@ -1,0 +1,36 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: myapp
+    env: dev
+  name: liv-exec
+spec:
+  containers:
+  - image: nginx:latest
+    name: con1
+    ports:
+    - containerPort: 80
+    livenessProbe:
+      exec:
+        command:
+        - cat
+        - /usr/share/nginx/html/index123.html
+      initialDelaySeconds: 5
+      periodSeconds: 5
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mypod
+spec:
+  type: NodePort
+  selector:
+    app: myapp
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+    nodePort: 30123
+
