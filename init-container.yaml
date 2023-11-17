@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: mydep
+spec:
+   replicas: 3
+   selector: 
+     matchLabels:
+       app: myapp
+   template:
+     metadata:
+       labels:
+         app: myapp
+     spec:
+      initContainers:
+      - name: icon
+        image: busybox:latest
+        volumeMounts:
+        - name: myvol
+          mountPath: /data
+        command: ["/bin/sh"]
+        args: ["-c","echo '<h1> Hello from initContainers index file</h1>' > /data/index.html"]
+
+      containers:
+      - name: con1
+        image: nginx
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: myvol
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: myvol
+        emptyDir: {}
