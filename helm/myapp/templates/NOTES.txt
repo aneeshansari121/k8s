@@ -1,0 +1,7 @@
+Thank you for using our application.
+for any details visit us www.abc.com
+
+to list pods 
+  kubectl get pods
+
+

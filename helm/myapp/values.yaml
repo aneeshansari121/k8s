@@ -1,0 +1,14 @@
+
+replicacount: 3
+
+app:
+  name: appcon
+  image: httpd:latest
+  port:
+    appport: 80
+
+
+
+
+
+

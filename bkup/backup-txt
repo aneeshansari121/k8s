@@ -1,0 +1,16 @@
+ETCDCTL_API=3 etcdctl snapshot save snapshot.db --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt --key /etc/kubernetes/pki/etcd/server.key
+
+
+status check 
+ETCDCTL_API=3 etcdctl snapshot status snapshot.db
+
+OR
+
+ETCDCTL_API=3 etcdctl snapshot status snapshot.db
+
+
+
+
+
+
+ETCDCTL_API=3 etcdctl snapshot restore snapshot.db --name server --initial-cluster server=https://192.168.29.109:2380 --initial-advertise-peer-urls https://192.168.29.109:2380 --data-dir=/var/lib/etcd2
